@@ -1,0 +1,21 @@
+---
+
+- name: Gather no facts
+  hosts: server
+  gather_facts: no
+
+- name: Install apache2
+  hosts: server
+  roles:
+  - webserver
+
+- name: Install mysql
+  hosts: server
+  roles:
+  - mysql
+
+- name: Install tomacat
+  hosts: server
+  roles:
+  - tomcat
+
