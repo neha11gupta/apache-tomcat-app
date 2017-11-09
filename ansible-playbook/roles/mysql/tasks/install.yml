@@ -1,0 +1,15 @@
+---
+
+- name: Install mysql
+  package: name={{item}} state=present
+  with_items:
+  - mysql-server
+
+- name: Configure
+  shell: mysql_secure_installation
+
+- name: To start mysql
+  service:
+   name: mysql
+   state: started
+   enabled: yes

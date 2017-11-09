@@ -1,0 +1,12 @@
+---
+
+- name: Install apache2
+  package: name={{item}} state=present
+  with_items:
+  - apache2
+
+- name: To start apache2
+  service:
+   name: apache2
+   state: started
+   enabled: yes
