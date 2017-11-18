@@ -6,16 +6,25 @@
 
 - name: Install apache2
   hosts: server
+  become: yes
+  become_method: sudo
+  user: "{{ansible_user}}"
   roles:
   - webserver
 
 - name: Install mysql
   hosts: server
+  become: yes
+  become_method: sudo
+  user: "{{ansible_user}}"
   roles:
   - mysql
 
 - name: Install tomacat
   hosts: server
+  become: yes
+  become_method: sudo
+  user: "{{ansible_user}}"
   roles:
   - tomcat
 
