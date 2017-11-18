@@ -1,0 +1,19 @@
+- name: Install tomcat 7
+  package: name={{item}} state=present
+  with_items:
+  - tomcat7
+  - tomcat7-docs 
+  - tomcat7-admin 
+  - tomcat7-examples
+  
+- name: Configure JAVA_OPTS in tomcat file
+  lineinfile:
+    dest: "/etc/default/tomcat"
+    regexp: ^#?JAVA_OPTS =.*
+    line: "JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"
+    
+- name: To start tomcat
+  service:
+   name: tomcat7
+   state: started
+   enabled: yes    
