@@ -12,6 +12,16 @@
     regexp: ^#?JAVA_OPTS =.*
     line: "JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"
     
+- name: Copy mysql connector
+  copy: src=mysql-connector-java-5.0.8.tar.gz dest=/usr/share/tomcat7/lib/mysql-connector-java-5.0.8.tar.gz
+  
+
+- name: Extract mysql-connector
+  unarchive: src=/usr/share/tomcat7/lib/{{item}} dest=/usr/share/tomcat7/lib copy=no
+  with_items:
+    - mysql-connector-java-5.0.8.tar.gz
+
+
 - name: To start tomcat
   service:
    name: tomcat7
